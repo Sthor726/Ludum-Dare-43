@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossManager : MonoBehaviour {
 
@@ -19,12 +20,13 @@ public class BossManager : MonoBehaviour {
     {
         Destroy(boss);
         Instantiate(particles, spawnTransform.position, spawnTransform.rotation);
+        StartCoroutine(Wait());
 
     }
     IEnumerator Wait()
     {
         yield return new WaitForSeconds(3f);
-        GameManager.instance.LoadNext();
+        GameManager.instance.EndLevel();
     }
 
 
